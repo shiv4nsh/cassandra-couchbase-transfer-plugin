@@ -1,24 +1,24 @@
 package com.foobar
 
+import java.util.UUID
+
 import com.couchbase.spark.sql._
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 
 object CouchbasePipeline extends App {
 
-
-/*  val config = ConfigFactory.load("application.conf")
-  val couchbaseUrl = config.getString("couchbase.url")
-  val bucketName = config.getString("couchbase.bucketName")
-
-  val bucketPassword = config.getString("couchbase.bucketPassword")*/
+  //Couchbase Configuration
   val bucketName = "foobar"
+  val couchbaseHost = "localhost"
+  val idFeild = "id"
+
+  //Cassandra Configuration
   val keyspaceName = "foobar"
   val tableName = "testcouchbase"
-  val idFeild = "id"
   val cassandraHost = "localhost"
-  val couchbaseHost="shiv4nsh"
   val cassandraPort = 9042
+
   val conf = new SparkConf()
     .setAppName(s"CouchbaseCassandraTransferPlugin")
     .setMaster("local[*]")
@@ -33,5 +33,21 @@ object CouchbasePipeline extends App {
     .format("org.apache.spark.sql.cassandra")
     .options(Map("table" -> tableName, "keyspace" -> keyspaceName))
     .load()
-  cassandraRDD.write.couchbase(Map(idFeild -> "uid"))
+
+
+  import org.apache.spark.sql.functions._
+
+  val uuidUDF = udf(CouchbaseHelper.getUUID _)
+  val rddToBeWritten = if (cassandraRDD.columns.contains(idFeild)) {
+    cassandraRDD.withColumn("META_ID", cassandraRDD(idFeild))
+  } else {
+    cassandraRDD.withColumn("META_ID", uuidUDF())
+  }
+  rddToBeWritten.write.couchbase()
 }
+
+object CouchbaseHelper {
+
+  def getUUID: String = UUID.randomUUID().toString
+}
+
