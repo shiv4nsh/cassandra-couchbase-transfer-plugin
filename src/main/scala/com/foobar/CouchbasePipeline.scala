@@ -3,21 +3,24 @@ package com.foobar
 import java.util.UUID
 
 import com.couchbase.spark.sql._
+import com.typesafe.config.ConfigFactory
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 
 object CouchbasePipeline extends App {
 
+  val config = ConfigFactory.load()
   //Couchbase Configuration
-  val bucketName = "foobar"
-  val couchbaseHost = "localhost"
-  val idFeild = "id"
+  val bucketName = config.getString("couchbase.bucketName")
+  val couchbaseHost = config.getString("couchbase.host")
+
 
   //Cassandra Configuration
-  val keyspaceName = "foobar"
-  val tableName = "testcouchbase"
-  val cassandraHost = "localhost"
-  val cassandraPort = 9042
+  val keyspaceName = config.getString("cassandra.keyspaceName")
+  val tableName = config.getString("cassandra.tableName")
+  val idFeild = config.getString("cassandra.idFeild")
+  val cassandraHost = config.getString("cassandra.host")
+  val cassandraPort = config.getInt("cassandra.port")
 
   val conf = new SparkConf()
     .setAppName(s"CouchbaseCassandraTransferPlugin")

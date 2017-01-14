@@ -16,6 +16,7 @@ libraryDependencies ++= {
     "org.apache.spark" %% "spark-streaming" % sparkV ,
     "com.datastax.spark" %% "spark-cassandra-connector" % "2.0.0-M3",
     "org.scalatest" %% "scalatest" % "3.0.0" % "test",
-    "com.couchbase.client" %% "spark-connector" % "2.0.0"
+    "com.couchbase.client" %% "spark-connector" % "2.0.0",
+    "com.typesafe" % "config" % "1.3.1"
   )
 }
