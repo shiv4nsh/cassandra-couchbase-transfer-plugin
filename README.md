@@ -27,16 +27,16 @@ All the configurations can be done by setting the **environment variables**
 
 ###Cassandra Side:
 So this is how data looks on Cassandra Side:
-
+![cassandra1](https://cloud.githubusercontent.com/assets/12807854/21962011/40c941ca-db3f-11e6-845f-aa3390054981.png)
 
 ###Couchbase Side:
 
 **Case 1:** When id exists and same can be used as Couchbase Document Id.
-
+![couchbase_with_id](https://cloud.githubusercontent.com/assets/12807854/21962012/40ed50ec-db3f-11e6-91e0-482c24346fec.png)
 
 **Case 2:** When id name does not exist and we need to assign Random id to Documents.
 
-
+![couchbase_idchanged](https://cloud.githubusercontent.com/assets/12807854/21962013/40ef49ba-db3f-11e6-82b0-9c6fbbc50257.png)
 
 ##How to Run the Cassandra-Couchbase Transfer plugin:
 
