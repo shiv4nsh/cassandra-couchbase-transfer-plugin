@@ -44,4 +44,20 @@ Steps to run the code are :
 
 1. Download the code from the repository.
 2. Configure the environment Variables according to the configuration.
-3. Run the project using sbt run
+
+> export  COUCHBASE_URL="localhost"
+
+> export COUCHBASE_BUCKETNAME="foobar"
+
+> export CASSANDRA_URL="localhost"
+
+> export CASSANDRA_PORT=9042
+
+> export CASSANDRA_KEYSPACENAME="foobar"
+
+> export CASSANDRA_TABLENAME="testcouchbase"
+
+> export CASSANDRA_ID_FEILD_NAME="id"
+
+3. Run the project using ```sbt run```
+
