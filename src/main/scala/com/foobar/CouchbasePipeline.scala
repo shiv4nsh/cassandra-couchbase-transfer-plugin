@@ -15,7 +15,7 @@ object CouchbasePipeline extends App {
   val couchbaseHost = config.getString("couchbase.host")
   
   //Spark Configuration
-  val sparkIp = config.getString("spark.ip")
+  val sparkIp = config.getString("spark.url")
 
 
   //Cassandra Configuration
