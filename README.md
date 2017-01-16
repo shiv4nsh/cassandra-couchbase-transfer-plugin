@@ -59,5 +59,7 @@ Steps to run the code are :
 
 > export CASSANDRA_ID_FEILD_NAME="id"
 
+> export SPARK_IP="local[*]"
+
 3. Run the project using ```sbt run```
 
