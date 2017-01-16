@@ -13,6 +13,9 @@ object CouchbasePipeline extends App {
   //Couchbase Configuration
   val bucketName = config.getString("couchbase.bucketName")
   val couchbaseHost = config.getString("couchbase.host")
+  
+  //Spark Configuration
+  val sparkIp = config.getString("spark.ip")
 
 
   //Cassandra Configuration
@@ -24,7 +27,7 @@ object CouchbasePipeline extends App {
 
   val conf = new SparkConf()
     .setAppName(s"CouchbaseCassandraTransferPlugin")
-    .setMaster("local[*]")
+    .setMaster(sparkIp)
     .set(s"com.couchbase.bucket.$bucketName", "")
     .set("com.couchbase.nodes", couchbaseHost)
     .set("spark.cassandra.connection.host", cassandraHost)
