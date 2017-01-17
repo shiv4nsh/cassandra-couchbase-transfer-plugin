@@ -9,14 +9,14 @@ All the configurations can be done by setting the **environment variables**
 
 |   Configuration Name  |   Default Value   |   Description |
 | :---------------------: | :-----------------: | :--------------: |
-|   COUCHBASE_URL       |   "localhost"     | The URL for the Couchbase.|
+|   COUCHBASE_URL       |   "localhost"     | The hostname for the Couchbase.|
 |   COUCHBASE_BUCKETNAME|   "foobar"        | The bucket name to which data needs to be transferred.|
 
 ### Cassandra Configuration:
 
 | Configuration Name | Default Value | Description |
 | :-----------------: | :------------: | :----------: |
-| CASSANDRA_URL | "localhost" | The URL for the Cassandra. |
+| CASSANDRA_URL | "localhost" | The hostname for the Cassandra. |
 | CASSANDRA_PORT | 9042 | The port for the Cassandra. |
 | CASSANDRA_KEYSPACENAME | "foobar" | The keyspace name for the Cassandra |
 | CASSANDRA_TABLENAME | "testcouchbase" | The table name that needs to be transferred. |
