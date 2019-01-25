@@ -72,3 +72,6 @@ Steps to run the code are :
 * Allow customization of 'type' field name
 * Allow customization of keyspace prefix
 * Allow customization of type field value
+* Modify behavior so running plugin multiple times doesn't generate error messages
+** ignore existing document ID's
+** use upsert
