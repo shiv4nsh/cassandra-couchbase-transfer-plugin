@@ -4,6 +4,7 @@ This tool allows you to transfer data from Cassandra to Couchbase , just by doin
 ##Configurations:
 
 All the configurations can be done by setting the **environment variables**
+
 ###Couchbase Configuration:
 
 
@@ -13,6 +14,18 @@ All the configurations can be done by setting the **environment variables**
 |   COUCHBASE_BUCKETNAME|   "foobar"        | The bucket name to which data needs to be transferred.|
 |   COUCHBASE_USERNAME  |   ""              | The username to use to authenticate with Couchbase. |
 |   COUCHBASE_PASSWORD  |   ""              | The password to use to authenticate with Couchbase. |
+
+### Cassandra Configuration:
+
+| Configuration Name | Default Value | Description |
+| :-----------------: | :------------: | :----------: |
+| CASSANDRA_URL | "localhost" | The hostname for the Cassandra. |
+| CASSANDRA_PORT | 9042 | The port for the Cassandra. |
+| CASSANDRA_KEYSPACENAME | "foobar" | The keyspace name for the Cassandra |
+| CASSANDRA_TABLENAME | "testcouchbase" | The table name that needs to be transferred. |
+| CASSANDRA_ID_FIELD_NAME | "id" | The field name that should be used as Couchbase Document Id, if the field name does not matches any column it gives a random id to the document. |
+| CASSANDRA_USERNAME | "" | User account to use to authenticate with Cassandra. |
+| CASSANDRA_PASSWORD | "" | Password to use to authenticate with Cassandra. |
 
 
 ##Code in Action:
