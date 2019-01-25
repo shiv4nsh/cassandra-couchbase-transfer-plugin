@@ -7,7 +7,7 @@ scalaVersion := "2.11.8"
 organization := "com.foobar"
 
 libraryDependencies ++= {
-  val sparkV = "2.0.2"
+  val sparkV = "2.2.3"
   Seq(
     "log4j" % "log4j" % "1.2.17",
     "org.slf4j" % "slf4j-api" % "1.7.21",
