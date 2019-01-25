@@ -14,18 +14,6 @@ All the configurations can be done by setting the **environment variables**
 |   COUCHBASE_USERNAME  |   ""              | The username to use to authenticate with Couchbase. |
 |   COUCHBASE_PASSWORD  |   ""              | The password to use to authenticate with Couchbase. |
 
-### Cassandra Configuration:
-
-| Configuration Name | Default Value | Description |
-| :-----------------: | :------------: | :----------: |
-| CASSANDRA_URL | "localhost" | The hostname for the Cassandra. |
-| CASSANDRA_PORT | 9042 | The port for the Cassandra. |
-| CASSANDRA_KEYSPACENAME | "foobar" | The keyspace name for the Cassandra |
-| CASSANDRA_TABLENAME | "testcouchbase" | The table name that needs to be transferred. |
-| CASSANDRA_ID_FIELD_NAME | "id" | The field name that should be used as Couchbase Document Id, if the field name does not matches any column it gives a random id to the document. |
-| CASSANDRA_USERNAME | "" | User account to use to authenticate with Cassandra. |
-| CASSANDRA_PASSWORD | "" | Password to use to authenticate with Cassandra. |
-
 
 ##Code in Action:
 
@@ -51,7 +39,7 @@ Steps to run the code are :
 
 > docker build -t shiv4nsh/cassandra-couchbase-transfer-plugin:latest .
 
-4. Run the Docker container
+3. Run the Docker container
 
 > docker run -d --rm \
     -e COUCHBASE_URL=couchbase \
