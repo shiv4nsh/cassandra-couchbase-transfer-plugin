@@ -1,6 +1,6 @@
 # cassandra-couchbase-transfer-plugin
 
-This tool allows you to transfer data from Cassandra to Couchbase , just by doing some small configurations :) 
+This tool allows you to transfer data from Cassandra to Couchbase , just by doing some small configurations :)
 ##Configurations:
 
 All the configurations can be done by setting the **environment variables**
@@ -11,6 +11,8 @@ All the configurations can be done by setting the **environment variables**
 | :---------------------: | :-----------------: | :--------------: |
 |   COUCHBASE_URL       |   "localhost"     | The hostname for the Couchbase.|
 |   COUCHBASE_BUCKETNAME|   "foobar"        | The bucket name to which data needs to be transferred.|
+|   COUCHBASE_USERNAME  |   ""              | The username to use to authenticate with Couchbase. |
+|   COUCHBASE_PASSWORD  |   ""              | The password to use to authenticate with Couchbase. |
 
 ### Cassandra Configuration:
 
@@ -20,7 +22,9 @@ All the configurations can be done by setting the **environment variables**
 | CASSANDRA_PORT | 9042 | The port for the Cassandra. |
 | CASSANDRA_KEYSPACENAME | "foobar" | The keyspace name for the Cassandra |
 | CASSANDRA_TABLENAME | "testcouchbase" | The table name that needs to be transferred. |
-| CASSANDRA_ID_FEILD_NAME | "id" | The field name that should be used as Couchbase Document Id, if the field name does not matches any column it gives a random id to the document. |
+| CASSANDRA_ID_FIELD_NAME | "id" | The field name that should be used as Couchbase Document Id, if the field name does not matches any column it gives a random id to the document. |
+| CASSANDRA_USERNAME | "" | User account to use to authenticate with Cassandra. |
+| CASSANDRA_PASSWORD | "" | Password to use to authenticate with Cassandra. |
 
 
 ##Code in Action:
@@ -43,23 +47,28 @@ So this is how data looks on Cassandra Side:
 Steps to run the code are :
 
 1. Download the code from the repository.
-2. Configure the environment Variables according to the configuration.
+2. Build the Docker container
 
-> export  COUCHBASE_URL="localhost"
+> docker build -t shiv4nsh/cassandra-couchbase-transfer-plugin:latest .
 
-> export COUCHBASE_BUCKETNAME="foobar"
+4. Run the Docker container
 
-> export CASSANDRA_URL="localhost"
+> docker run -d --rm \
+    -e COUCHBASE_URL=couchbase \
+    -e COUCHBASE_BUCKETNAME=foobar \
+    -e COUCHBASE_USERNAME=Administrator \
+    -e COUCHBASE_PASSWORD=passsword \
+    -e CASSANDRA_URL=cassandra \
+    -e CASSANDRA_KEYSPACENAME=foobar \
+    -e CASSANDRA_TABLENAME=testcouchbase \
+    -e CASSANDRA_ID_FIELD_NAME=id \
+    -e CASSANDRA_USERNAME=cassandra \
+    -e CASSANDRA_PASSWORD=cassandra \
+    shiv4nsh/cassandra-couchbase-transfer-plugin:latest
 
-> export CASSANDRA_PORT=9042
-
-> export CASSANDRA_KEYSPACENAME="foobar"
-
-> export CASSANDRA_TABLENAME="testcouchbase"
-
-> export CASSANDRA_ID_FEILD_NAME="id"
-
-> export SPARK_URL="local[*]"
-
-3. Run the project using ```sbt run```
-
+##TODO: Future Improvements
+* Add keyspace prefix to Couchbase document id. By default, the keyspace prefix should be "${CASSANDRA_KEYSPACENAME}::${CASSANDRA_TABLENAME}::${id}"
+* Add 'type' field to Couchbase document. By default, the field name should be 'type' and the value should be "${CASSANDRA_KEYSPACENAME}::${CASSANDRA_TABLENAME}"
+* Allow customization of 'type' field name
+* Allow customization of keyspace prefix
+* Allow customization of type field value
